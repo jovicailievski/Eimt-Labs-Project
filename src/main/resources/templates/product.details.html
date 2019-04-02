@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+    <script src="/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+    <script src="/assets/vendor/popper.min.js"></script>
+    <script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+</head>
+<body>
+<main>
+    <!--<p th:text="${product.id}"></p>-->
+    <!--<p th:text="${product.name}"></p>-->
+    <!--<p th:text="${product.description}"></p>-->
+    <!--<p th:text="${product.category.name}"></p>-->
+    <!--<p th:text="${product.manufacturer.name}"></p>-->
+    <!--<p th:text="${product.imgLink}"></p>-->
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6">
+            <div class="card text-center">
+                <h5  class="card-header bg-info text-white">Details</h5>
+                <div class="card-body bg-dark">
+                    <h5 th:text="${product.name}" class="card-title text-white"></h5>
+                    <img th:src="${product.imgLink}" class="img-fluid" th:alt="${product.name}">
+                    <p th:text="${product.description}" class="card-text text-white"></p>
+                    <p th:text="@{'Category - ' + ${product.category.name}}" class="card-text text-white"></p>
+                    <p th:text="@{'Brand - ' + ${product.manufacturer.name}}" class="card-text text-white"></p>
+
+                </div>
+                <div class="card-footer bg-info">
+                </div>
+            </div>
+        </div>
+        <div class="col">
+    </div>
+
+</main>
+
+</body>
+</html>
