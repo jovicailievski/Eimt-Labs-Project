@@ -106,6 +106,57 @@ public class ProductController {
         return "product.form";
     }
 
+
+    @PostMapping("/product/edit")
+    public String editProductDetails(Model model,@ModelAttribute Product p){
+        Optional<Product> Oprod = productList.stream()
+                .filter(pp -> pp.getId().equals(p.getId()))
+                .findAny();
+
+        if(!Oprod.isPresent())
+            throw new ProductNotFoundException();
+
+        Oprod.get();
+
+        Optional<Manufacturer> man = manufacturers.stream()
+                .filter(m -> m.getId().equals(p.getManufacturer().getId()))
+                .findAny();
+        if (!man.isPresent()) {
+            throw new ManufacturerNotFoundException();
+        }
+
+        p.setManufacturer(man.get());
+        Optional<Category> cat = categories.stream()
+                .filter(c -> c.getId().equals(p.getCategory().getId()))
+                .findAny();
+        if (!cat.isPresent()) {
+            throw new CategoryNotFoundException();
+        }
+
+        p.setManufacturer(man.get());
+        p.setCategory(cat.get());
+        productList.remove(Oprod.get());
+        productList.add(p);
+
+
+        return "redirect:/product/" + p.getId() + "/";
+    }
+
+    @GetMapping("/product/edit/{id}")
+    public String editProductDetailsForm(Model model,@PathVariable Long id){
+        model.addAttribute("manufacturers", manufacturers);
+        model.addAttribute("categories", categories);
+        Optional<Product> prod = productList.stream()
+                .filter(p -> p.getId().equals(id))
+                .findAny();
+        if(!prod.isPresent())
+            throw new ProductNotFoundException();
+
+
+        model.addAttribute("product", prod.get());
+        return "product.edit";
+    }
+
     @PostMapping("/product/add")
     public String addProductPost(Model model, @ModelAttribute Product p) {
         Optional<Manufacturer> man = manufacturers.stream()
