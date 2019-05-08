@@ -163,24 +163,7 @@ public class ProductController {
 
     @PostMapping("/product/add")
     public String addProductPost(Model model, @ModelAttribute Product p) {
-//        Optional<Manufacturer> man = manufacturers.stream()
-//                .filter(m -> m.getId().equals(p.getManufacturer().getId()))
-//                .findAny();
-//        if (!man.isPresent()) {
-//            throw new ManufacturerNotFoundException();
-//        }
-//
-//        p.setManufacturer(man.get());
-//        Optional<Category> cat = categories.stream()
-//                .filter(c -> c.getId().equals(p.getCategory().getId()))
-//                .findAny();
-//        if (!cat.isPresent()) {
-//            throw new CategoryNotFoundException();
-//        }
-//
-//        p.setCategory(cat.get());
-//        p.setId(getNextId());
-//        productList.add(p);
+
 
         productService.addNewProduct(p);
 
