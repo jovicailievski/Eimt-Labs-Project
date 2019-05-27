@@ -1,9 +1,10 @@
-package mk.ukim.finki.emt.deviceshop.service;
+package mk.ukim.finki.emt.deviceshop.service.impl;
 
 import com.stripe.Stripe;
 import com.stripe.exception.*;
 import com.stripe.model.Charge;
 import mk.ukim.finki.emt.deviceshop.dto.ChargeRequest;
+import mk.ukim.finki.emt.deviceshop.service.PaymentService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

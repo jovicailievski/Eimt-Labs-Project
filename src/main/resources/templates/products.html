@@ -22,8 +22,10 @@
         <li th:each="p : ${productList}" class="list-group-item list-group-item-default">
             <label>ProductId:</label>
             <strong th:text="${p.id}"></strong>
+            <img th:src="@{${p.imgLink}}"/>
             <a th:text="${p.name}" th:href="@{'/product/' + ${p.id}}" class="btn btn-info btn-lg btn-block" role="button"></a>
             <a th:href="@{'/product/edit/' + ${p.id}}" class="btn btn-danger" role="button">Edit</a>
+            <a th:href="@{'/checkout/' + ${p.id}}" class="btn btn-primary float-right" role="button">Buy Now</a>
         </li>
     </ul>
         </div>
